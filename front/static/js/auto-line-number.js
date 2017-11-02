@@ -1,14 +1,5 @@
-<html> 
-<head>
-<title>Js给文本框添加行号功能</title>
-<style type="text/css">
- #codeTextarea{width: 500px;height: 310px;}
-.textAreaWithLines{font-family: courier;border: 1px solid #ddd;}
-.textAreaWithLines textarea,.textAreaWithLines div{border: 0px;line-height: 120%;font-size: 12px;}
-.lineObj{color: #666;}
-</style>
-<script type="text/javascript">
 var lineObjOffsetTop = 2;
+
 function createTextAreaWithLines(id)
 {
   var el = document.createElement('DIV');
@@ -48,14 +39,3 @@ function positionLineObj(obj,ta)
 {
    obj.style.top = (ta.scrollTop * -1 + lineObjOffsetTop) + 'px';  
 }
-</script>
-</head>  
-<body>
-<form>
-<textarea id="codeTextarea"></textarea>
-</form>
-<script type="text/javascript">
-createTextAreaWithLines('codeTextarea');
-</script>
-</body>
-</html>
