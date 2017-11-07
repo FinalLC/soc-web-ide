@@ -1,3 +1,15 @@
+// var count = 1;
+//         $(document).ready(function(){
+//             $("#editarea").bind("keyup", function(event) {
+//                 if (event.keyCode == 13) {
+//                 	console.log(count);
+//                     count++;
+//                     var newHtml = $("#editarea").val()  + count.toString() + " ";
+//                     $("#editarea").val(newHtml);
+//                 }
+//             });
+//         });
+
 var lineObjOffsetTop = 2;
 
 function createTextAreaWithLines(id)
@@ -23,7 +35,7 @@ function createTextAreaWithLines(id)
   lineObj.style.textAlign = 'right';
   lineObj.className='lineObj';
   var string = '';
-  for(var no=1;no<20;no++){
+  for(var no=1;no<1000;no++){
    if(string.length>0)string = string + '<br>';
    string = string + no;
   }
@@ -39,3 +51,4 @@ function positionLineObj(obj,ta)
 {
    obj.style.top = (ta.scrollTop * -1 + lineObjOffsetTop) + 'px';  
 }
+

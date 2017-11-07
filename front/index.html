@@ -6,83 +6,83 @@
   <link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="static/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="static/css/jquery.toolbar.css">
+  <link rel="stylesheet" type="text/css" href="static/css/textareafullscreen.css">
   <link rel="icon" href="static/images/icons/32.png">
   <meta name="robots" content="noindex, nofollow" />
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <script type="text/javascript" src="static/js/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="static/js/jquery.textareafullscreen.js"></script>
   <script type="text/javascript" src="static/js/auto-line-number.js"></script>
+  <script type="text/javascript" src="static/js/fullscreen.js"></script>
   <style type="text/css">
-#editarea
-{
-width:100%;
-}
-.textAreaWithLines{font-family: courier;border: 1px solid #ddd;}
-.textAreaWithLines textarea,.textAreaWithLines div{border: 0px;line-height: 120%;font-size: 12px;}
-.lineObj{color: #666;}
-</style>
+  textarea
+  {
+    width:97.9%;
+    resize: none;
+  }
+  .textAreaWithLines{font-family: courier;border: 1px solid #ddd;}
+  .textAreaWithLines textarea,.textAreaWithLines div{border: 0px;line-height: 120%;font-size: 12px;}
+  .lineObj{color: #666;}
+  </style>
 </head>
 
 <body>
 
   <div class="btn-group" role="group" aria-label="toolbar">
 
-    <div class="btn-group" role="group">
-    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="margin-right:10px;">
-    File <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu">
-      <li><a href="#">New File</a></li>
-      <li role="separator" class="divider"></li>
-      <li><a href="#">Open File</a></li>
-      <li><a href="#">Save File</a></li>
-      <li role="separator" class="divider"></li>
-      <li><a href="#">Eixt</a></li>
-    </ul>
+    <div class="btn-group" role="group" aria-label="File">
+      <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="margin-right:10px;">
+        File <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a href="#">New File</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="#">Open File</a></li>
+        <li><a href="#">Save File</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="#">Eixt</a></li>
+      </ul>
     </div>
-    <div class="btn-group" role="group">
-    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="margin-right:10px;">
-    View <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu">
-      <li><a href="#">Full Screen</a></li>
-      <li role="separator" class="divider"></li>
-      <li><a href="#">Open File</a></li>
-      <li><a href="#">Save File</a></li>
-      <li role="separator" class="divider"></li>
-      <li><a href="#">Eixt</a></li>
-    </ul>
+    <div class="btn-group" role="group" aria-label="View">
+      <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="margin-right:10px;">
+        View <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a href="#">Full Screen</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="#">Open File</a></li>
+        <li><a href="#">Save File</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="#">Eixt</a></li>
+      </ul>
     </div>
-    <div class="btn-group" role="group">
-    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-    Run <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu">
-      <li><a href="#">Complier</a></li>
-      <li role="separator" class="divider"></li>
-      <li><a href="#">Open File</a></li>
-      <li><a href="#">Save File</a></li>
-      <li role="separator" class="divider"></li>
-      <li><a href="#">Eixt</a></li>
-    </ul>
+    <div class="btn-group" role="group" aria-label="Run">
+      <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        Run <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a href="#">Complier</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="#">Open File</a></li>
+        <li><a href="#">Save File</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="#">Eixt</a></li>
+      </ul>
     </div>
+
   </div>
 
+  <textarea id="editarea" rows="30" placeholder="Edit Area:"></textarea>
+  <script type="text/javascript">
+    createTextAreaWithLines('editarea');
+  </script>
 
-<form>
-<textarea id="editarea" rows="20">
-</textarea>
-</form>
-<script type="text/javascript">
-document.write(createTextAreaWithLines('editarea'));
-</script>
-<textarea name="output" rows="9">
-Edit Area:
-Output:
-</textarea>
-
-
-
+  <textarea id="resultarea" rows="12" placeholder="Output:"></textarea>
+  <script type="text/javascript">
+    createTextAreaWithLines('resultarea');
+  </script>
 </body>
-<script type="text/javascript" src="static/js/jquery-3.2.1.min.js"></script>
+
 <script type="text/javascript" src="static/js/bootstrap.js"></script>
 <script type="text/javascript" src="static/js/jquery.toolbar.js"></script>
 
