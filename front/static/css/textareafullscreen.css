@@ -1,18 +1,18 @@
 .tx-editor-wrapper {
   position: relative;
-  width: 464px;
-  height: 100px;
+  width: 100%;
+  height: 100%;
 }
 .tx-editor-wrapper .tx-editor.expanded {
   position: fixed;
   top: 0;
-  left: 0;
+  left: -30px;
   width: 100%;
   height:100%;
   z-index: 500;
 }
 .tx-editor-wrapper .tx-editor {
-    height: 100%;
+    height: 200px;
 }
 .tx-editor-wrapper .tx-editor .tx-icon {
   position: absolute;
@@ -30,7 +30,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba( 0, 255, 255, 1.0);
+  background: rgba( 255, 255, 255, 1.0);
   z-index: 2;
   opacity: 0;
 }

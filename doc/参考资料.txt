@@ -6,3 +6,6 @@ http://v3.bootcss.com/components/
 
 JS给Textarea文本框添加行号的方法：
 http://www.jb51.net/article/71300.htm
+
+Textarea全屏编辑的插件：
+http://www.jq22.com/download/pd-e540aa3e-2db5-11e4-954d-000c29f61318.zip
