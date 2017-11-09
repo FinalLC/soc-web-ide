@@ -2,28 +2,25 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  <title>CodeSL</title>
-  <link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="static/css/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="static/css/jquery.toolbar.css">
-  <link rel="stylesheet" type="text/css" href="static/css/textareafullscreen.css">
+  <title>CodeSpirit</title>
+  <link rel="stylesheet" href="static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="static/css/bootstrap.css">
+  <link rel="stylesheet" href="static/css/jquery.toolbar.css">
+  <link rel="stylesheet" href="static/css/textareafullscreen.css">
+  <link rel="stylesheet" href="static/lib/codemirror.css">
+  <link rel="stylesheet" href="static/theme/seti.css">
+  <link rel="stylesheet" href="static/addon/display/fullscreen.css">
   <link rel="icon" href="static/images/icons/32.png">
+
   <meta name="robots" content="noindex, nofollow" />
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <script type="text/javascript" src="static/js/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="static/js/jquery.textareafullscreen.js"></script>
-  <script type="text/javascript" src="static/js/auto-line-number.js"></script>
-  <script type="text/javascript" src="static/js/fullscreen.js"></script>
-  <style type="text/css">
-  textarea
-  {
-    width: 97.9%;
-    resize: none;
-  }
-  .textAreaWithLines{font-family: courier;border: 1px solid #ddd;}
-  .textAreaWithLines textarea,.textAreaWithLines div{border: 0px;line-height: 120%;font-size: 12px;}
-  .lineObj{color: #666;}
-  </style>
+  <script src="static/js/jquery-3.2.1.min.js"></script>
+  <script src="static/js/jquery.textareafullscreen.js"></script>
+  <script src="static/js/fullscreen.js"></script>
+  <script src="static/lib/codemirror.js"></script>
+  <script src="static/mode/clike/clike.js"></script>
+  <script src="static/addon/display/fullscreen.js"></script>
+
+  <style>.CodeMirror {border: 2px inset #dee;}</style>
 </head>
 
 <body>
@@ -71,15 +68,100 @@
     </div>
 
   </div>
-  <textarea id="editarea" rows="30" placeholder="Edit Area:"></textarea>
-  <script type="text/javascript">
-    createTextAreaWithLines('editarea');
+  <div><textarea id="editarea" name="editarea" placeholder="Edit Area:">
+/* C demo code */
+
+#include <zmq.h>
+#include <pthread.h>
+#include <semaphore.h>
+#include <time.h>
+#include <stdio.h>
+#include <fcntl.h>
+#include <malloc.h>
+
+typedef struct {
+  void* arg_socket;
+  zmq_msg_t* arg_msg;
+  char* arg_string;
+  unsigned long arg_len;
+  int arg_int, arg_command;
+
+  int signal_fd;
+  int pad;
+  void* context;
+  sem_t sem;
+} acl_zmq_context;
+
+#define p(X) (context->arg_##X)
+
+  void* zmq_thread(void* context_pointer) {
+  acl_zmq_context* context = (acl_zmq_context*)context_pointer;
+  char ok = 'K', err = 'X';
+  int res;
+
+  while (1) {
+  while ((res = sem_wait(&amp;context->sem)) == EINTR);
+  if (res) {write(context->signal_fd, &amp;err, 1); goto cleanup;}
+  switch(p(command)) {
+  case 0: goto cleanup;
+  case 1: p(socket) = zmq_socket(context->context, p(int)); break;
+  case 2: p(int) = zmq_close(p(socket)); break;
+  case 3: p(int) = zmq_bind(p(socket), p(string)); break;
+  case 4: p(int) = zmq_connect(p(socket), p(string)); break;
+  case 5: p(int) = zmq_getsockopt(p(socket), p(int), (void*)p(string), &amp;p(len)); break;
+  case 6: p(int) = zmq_setsockopt(p(socket), p(int), (void*)p(string), p(len)); break;
+  case 7: p(int) = zmq_send(p(socket), p(msg), p(int)); break;
+  case 8: p(int) = zmq_recv(p(socket), p(msg), p(int)); break;
+  case 9: p(int) = zmq_poll(p(socket), p(int), p(len)); break;
+  }
+  p(command) = errno;
+  write(context->signal_fd, &amp;ok, 1);
+  }
+  cleanup:
+  close(context->signal_fd);
+  free(context_pointer);
+  return 0;
+}
+
+  void* zmq_thread_init(void* zmq_context, int signal_fd) {
+  acl_zmq_context* context = malloc(sizeof(acl_zmq_context));
+  pthread_t thread;
+
+  context->context = zmq_context;
+  context->signal_fd = signal_fd;
+  sem_init(&amp;context->sem, 1, 0);
+  pthread_create(&amp;thread, 0, &amp;zmq_thread, context);
+  pthread_detach(thread);
+  return context;
+}
+</textarea>
+</div>
+<script type="text/javascript">
+    //createTextAreaWithLines('editarea');
+    var myTextarea = document.getElementById('editarea');  
+    var CodeMirrorCodeMirrorEditor = CodeMirror.fromTextArea(myTextarea, {  
+      mode: "text/x-csrc",  
+      matchBrackets: true,
+      lineNumbers: true,
+      fullScreen:false,
+      theme:"seti",
+      extraKeys:{
+        "Ctrl-Space":"autocomplete",
+        "Ctrl-F7":function () {
+                    alert("绑定了Ctrl-F7");
+                  },
+        "Ctrl-Alt-Enter": function (cm) {
+                   cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+                  }
+    }  
+    });
   </script>
 
-  <textarea id="resultarea" rows="12" placeholder="Output:"></textarea>
+
+<!--   <textarea id="resultarea" rows="12" placeholder="Output:"></textarea>
   <script type="text/javascript">
     createTextAreaWithLines('resultarea');
-  </script>
+  </script> -->
 
 </body>
 

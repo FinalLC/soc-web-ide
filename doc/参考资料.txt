@@ -9,3 +9,8 @@ http://www.jb51.net/article/71300.htm
 
 Textarea全屏编辑的插件：
 http://www.jq22.com/download/pd-e540aa3e-2db5-11e4-954d-000c29f61318.zip
+
+Textarea语法高亮 codemirror下载使用：
+http://justcoding.iteye.com/blog/2299166
+http://codemirror.net/
+https://www.cnblogs.com/hf-z/p/5811997.html
