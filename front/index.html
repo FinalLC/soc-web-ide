@@ -8,15 +8,20 @@
   <link rel="stylesheet" href="static/css/jquery.toolbar.css">
   <link rel="stylesheet" href="static/css/textareafullscreen.css">
   <link rel="stylesheet" href="static/lib/codemirror.css">
+  <link rel="stylesheet" href="static/css/dropdown-submenu.css">
+
+  <link rel="stylesheet" href="static/theme/blackboard.css">
+  <link rel="stylesheet" href="static/theme/eclipse.css">
+  <link rel="stylesheet" href="static/theme/monokai.css">
+  <link rel="stylesheet" href="static/theme/night.css">
   <link rel="stylesheet" href="static/theme/seti.css">
   <link rel="stylesheet" href="static/addon/display/fullscreen.css">
   <link rel="icon" href="static/images/icons/32.png">
 
   <meta name="robots" content="noindex, nofollow" />
   <script src="static/js/jquery-3.2.1.min.js"></script>
-  <script src="static/js/jquery.textareafullscreen.js"></script>
-  <script src="static/js/fullscreen.js"></script>
   <script src="static/lib/codemirror.js"></script>
+  <script src="static/lib/main.js"></script>
   <script src="static/mode/clike/clike.js"></script>
   <script src="static/addon/display/fullscreen.js"></script>
 
@@ -45,12 +50,20 @@
         View <span class="caret"></span>
       </button>
       <ul class="dropdown-menu">
-        <li><a href="#">Full Screen</a></li>
+        <li id='fullscr'><a href="#">Full Screen</a></li>
         <li role="separator" class="divider"></li>
         <li><a href="#">Open File</a></li>
         <li><a href="#">Save File</a></li>
         <li role="separator" class="divider"></li>
-        <li><a href="#">Eixt</a></li>
+        <li class="dropdown-submenu"><a href="#">Theme</a>
+          <ul class="dropdown-menu">
+            <li id='blackboard'><a href="#">blackboard</a></li>
+            <li id='eclipse'><a href="#">eclipse</a></li>
+            <li id='monokai'><a href="#">monokai</a></li>
+            <li id='night'><a href="#">night</a></li>
+            <li id='seti'><a href="#">seti</a></li>
+          </ul>
+        </li>
       </ul>
     </div>
     <div class="btn-group" role="group" aria-label="Run">
@@ -138,23 +151,23 @@ typedef struct {
 </div>
 <script type="text/javascript">
     //createTextAreaWithLines('editarea');
-    var myTextarea = document.getElementById('editarea');  
-    var CodeMirrorCodeMirrorEditor = CodeMirror.fromTextArea(myTextarea, {  
-      mode: "text/x-csrc",  
-      matchBrackets: true,
-      lineNumbers: true,
-      fullScreen:false,
-      theme:"seti",
-      extraKeys:{
-        "Ctrl-Space":"autocomplete",
-        "Ctrl-F7":function () {
-                    alert("绑定了Ctrl-F7");
-                  },
-        "Ctrl-Alt-Enter": function (cm) {
-                   cm.setOption("fullScreen", !cm.getOption("fullScreen"));
-                  }
-    }  
-    });
+  var myTextarea = document.getElementById('editarea');  
+  var editor = CodeMirror.fromTextArea(myTextarea, {
+    mode: "text/x-csrc",  
+    matchBrackets: true,
+    lineNumbers: true,
+    fullScreen:false,
+    theme:"eclipse",
+    extraKeys:{
+      "Ctrl-Space":"autocomplete",
+      "Ctrl-Alt-Enter":function () {
+        alert("绑定了Ctrl-F7");
+      },
+      "F11": function (cm) {
+        cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+    }
+  }  
+});
   </script>
 
 

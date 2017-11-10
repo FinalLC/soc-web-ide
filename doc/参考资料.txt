@@ -4,13 +4,16 @@ https://gitee.com/corvo/SOC
 bootstrap组件：
 http://v3.bootcss.com/components/
 
-JS给Textarea文本框添加行号的方法：
+JS给Textarea文本框添加行号的方法：（垃圾）
 http://www.jb51.net/article/71300.htm
 
-Textarea全屏编辑的插件：
+Textarea全屏编辑的插件：（垃圾）
 http://www.jq22.com/download/pd-e540aa3e-2db5-11e4-954d-000c29f61318.zip
 
 Textarea语法高亮 codemirror下载使用：
 http://justcoding.iteye.com/blog/2299166
 http://codemirror.net/
 https://www.cnblogs.com/hf-z/p/5811997.html
+
+二级子菜单（右侧出现）：
+https://zhidao.baidu.com/question/651705779617081565.html

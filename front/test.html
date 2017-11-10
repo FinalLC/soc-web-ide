@@ -1,61 +1,85 @@
-<html> 
+<!DOCTYPE HTML>
+<html>
 <head>
-<title>Js给文本框添加行号功能</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>菜单项状态</title>
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
 <style type="text/css">
- #codeTextarea{width: 500px;height: 310px;}
-.textAreaWithLines{font-family: courier;border: 1px solid #ddd;}
-.textAreaWithLines textarea,.textAreaWithLines div{border: 0px;line-height: 120%;font-size: 12px;}
-.lineObj{color: #666;}
-</style>
-<script type="text/javascript">
-var lineObjOffsetTop = 2;
-function createTextAreaWithLines(id)
-{
-  var el = document.createElement('DIV');
-  var ta = document.getElementById(id);
-  ta.parentNode.insertBefore(el,ta);
-  el.appendChild(ta);
-  el.className='textAreaWithLines';
-  el.style.width = (ta.offsetWidth + 30) + 'px';
-  ta.style.position = 'absolute';
-  ta.style.left = '30px';
-  el.style.height = (ta.offsetHeight + 2) + 'px';
-  el.style.overflow='hidden';
-  el.style.position = 'relative';
-  el.style.width = (ta.offsetWidth + 30) + 'px';
-  var lineObj = document.createElement('DIV');
-  lineObj.style.position = 'absolute';
-  lineObj.style.top = lineObjOffsetTop + 'px';
-  lineObj.style.left = '0px';
-  lineObj.style.width = '27px';
-  el.insertBefore(lineObj,ta);
-  lineObj.style.textAlign = 'right';
-  lineObj.className='lineObj';
-  var string = '';
-  for(var no=1;no<20;no++){
-   if(string.length>0)string = string + '<br>';
-   string = string + no;
-  }
-   ta.onkeydown = function() { positionLineObj(lineObj,ta); };
-   ta.onmousedown = function() { positionLineObj(lineObj,ta); };
-   ta.onscroll = function() { positionLineObj(lineObj,ta); };
-   ta.onblur = function() { positionLineObj(lineObj,ta); };
-   ta.onfocus = function() { positionLineObj(lineObj,ta); };
-   ta.onmouseover = function() { positionLineObj(lineObj,ta); };
-   lineObj.innerHTML = string;
-  }
-function positionLineObj(obj,ta)
-{
-   obj.style.top = (ta.scrollTop * -1 + lineObjOffsetTop) + 'px';  
-}
-</script>
-</head>  
+        .dropdown-submenu {
+            position: relative;
+        }
+        .dropdown-submenu > .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -6px;
+            margin-left: -1px;
+            -webkit-border-radius: 0 6px 6px 6px;
+            -moz-border-radius: 0 6px 6px;
+            border-radius: 0 6px 6px 6px;
+        }
+        .dropdown-submenu:hover > .dropdown-menu {
+            display: block;
+        }
+        .dropdown-submenu > a:after {
+            display: block;
+            content: " ";
+            float: right;
+            width: 0;
+            height: 0;
+            border-color: transparent;
+            border-style: solid;
+            border-width: 5px 0 5px 5px;
+            border-left-color: #000;
+            margin-top: 5px;
+            margin-right: -10px;
+        }
+        .dropdown-submenu:hover > a:after {
+            border-left-color: #fff;
+        }
+        .dropdown-submenu.pull-left {
+            float: none;
+        }
+        .dropdown-submenu.pull-left > .dropdown-menu {
+            left: -100%;
+            margin-left: 10px;
+            -webkit-border-radius: 6px 0 6px 6px;
+            -moz-border-radius: 6px 0 6px 6px;
+            border-radius: 6px 0 6px 6px;
+        }
+    </style>
+</head>
 <body>
-<form>
-<textarea id="codeTextarea"></textarea>
-</form>
-<script type="text/javascript">
-createTextAreaWithLines('codeTextarea');
-</script>
+<div class="container">
+    <div class="row">
+        <h2>Bootstrap 3多级下拉菜单</h2>
+        <hr>
+        <div class="dropdown">
+            <a id="dLabel" role="button" data-toggle="dropdown" class="btn btn-primary" data-target="#"
+               href="javascript:;">
+                下拉多级菜单 <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                <li><a href="javascript:;">一级菜单</a></li>
+                <li><a href="javascript:;">一级菜单</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-submenu">
+                    <a tabindex="-1" href="javascript:;">一级菜单</a>
+                    <ul class="dropdown-menu">
+                        <li><a tabindex="-1" href="javascript:;">二级菜单</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-submenu">
+                            <a href="javascript:;">二级菜单</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="javascript:;">三级菜单</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+ <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 </body>
 </html>
