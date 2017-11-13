@@ -17,3 +17,6 @@ https://www.cnblogs.com/hf-z/p/5811997.html
 
 二级子菜单（右侧出现）：
 https://zhidao.baidu.com/question/651705779617081565.html
+
+html5文件的读取和写入：
+http://blog.csdn.net/zdavb/article/details/50266215
