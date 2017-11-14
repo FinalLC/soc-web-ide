@@ -20,3 +20,10 @@ https://zhidao.baidu.com/question/651705779617081565.html
 
 html5文件的读取和写入：
 http://blog.csdn.net/zdavb/article/details/50266215
+FileSaver.js的下载地址：
+https://github.com/eligrey/FileSaver.js
+
+退出按钮的实现：
+http://www.jianshu.com/p/9dc2752194b8
+在即将离开当前页面(刷新或关闭)时：
+http://blog.csdn.net/xujing19920814/article/details/54561797

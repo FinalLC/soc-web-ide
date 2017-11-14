@@ -53,8 +53,8 @@ window.onload = function(){
 	lopenf.onclick = function(){
 		document.getElementById('files').click();
 	}
-	var file = document.getElementById('files');
-	file.onchange = function(){
+	var fileRead = document.getElementById('files');
+	fileRead.onchange = function(){
 		console.log('reading file begins!!!')
 		var selectedFile = document.getElementById("files").files[0];
 		//获取读取的File对象
@@ -70,10 +70,40 @@ window.onload = function(){
         	//console.log(this.result);//当读取完成之后会回调这个函数，
         	//然后此时文件的内容存储到了result中。直接操作即可。
         	editor.setValue(this.result);
-    	};
+        };
     }
-}
 
+    var fileWrite = document.getElementById('export');
+    fileWrite.onclick = function(){
+    	console.log('writing file begins!!!');
+    	var content = editor.getValue();
+    	var	blob = new Blob([content],{type:"text/plain;charset=utf-8"});
+    	saveAs(blob,"filename.c");
+    	console.log('writing file succeed!!!');
+    }
+
+    var exit = document.getElementById('exit');//theme----seti
+    exit.onclick = function(){
+    	console.log("function exit begin~~~");
+    	if(confirm("您确定要关闭本页吗？")){
+    		window.onbeforeunload=null;
+    		window.location.href="about:blank";
+    		window.close();
+
+    	}
+    	else{
+    	}
+    	console.log("function exit succeed~~~");
+	    //alert("~成功更换主题5~");
+	}
+
+}
+window.onbeforeunload = function(event) {
+	console.log("function fresh begin~~~");
+	event.returnValue = "Something to write...";
+	console.log(event.returnValue);
+	console.log("function fresh succeed~~~");
+};
 // function fullScr()
 // {
 // 	console.log("fullScren~~~");
