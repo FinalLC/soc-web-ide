@@ -26,7 +26,14 @@
   <script src="static/mode/clike/clike.js"></script>
   <script src="static/addon/display/fullscreen.js"></script>
 
-  <style>.CodeMirror {border: 2px inset #dee;}</style>
+  <style>
+  .CodeMirror {border: 2px inset #dee;}
+  textarea{
+    width: 100%;
+    resize:none;/*//禁止文本域textarea可拖拽*/
+    overflow: auto;
+  }
+  </style>
 </head>
 
 <body>
@@ -38,7 +45,7 @@
         File <span class="caret"></span>
       </button>
       <ul class="dropdown-menu">
-        <li><a href="#">New File</a></li>
+        <li id='new'><a href="#">New File</a></li>
         <li role="separator" class="divider"></li>
         <li id='import'><a href="#">Open File</a></li>
         <li id='export'><a href="#">Save File</a></li>
@@ -53,11 +60,10 @@
       <ul class="dropdown-menu">
         <li id='fullscr'><a href="#">Full Screen</a></li>
         <li role="separator" class="divider"></li>
-        <li><a href="#">Open File</a></li>
-        <li><a href="#">Save File</a></li>
+        <li><a href="#">Font</a></li>
         <li role="separator" class="divider"></li>
         <li class="dropdown-submenu"><a href="#">Theme</a>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu"><!-- //主题选择 -->
             <li id='blackboard'><a href="#">blackboard</a></li>
             <li id='eclipse'><a href="#">eclipse</a></li>
             <li id='monokai'><a href="#">monokai</a></li>
@@ -72,17 +78,14 @@
         Run <span class="caret"></span>
       </button>
       <ul class="dropdown-menu">
-        <li><a href="#">Complier</a></li>
+        <li id='complier'><a href="#">Complier</a></li>
         <li role="separator" class="divider"></li>
-        <li><a href="#">Open File</a></li>
-        <li><a href="#">Save File</a></li>
-        <li role="separator" class="divider"></li>
-        <li><a href="#">Eixt</a></li>
+        <li><a href="#">Other</a></li>
       </ul>
     </div>
 
   </div>
-  <div><textarea id="editarea" name="editarea" placeholder="Edit Area:">
+  <div><textarea id="editarea" name="editarea" placeholder="Edit Area">
 /* C demo code */
 
 #include <zmq.h>
@@ -154,11 +157,11 @@ typedef struct {
     //createTextAreaWithLines('editarea');
   var myTextarea = document.getElementById('editarea');  
   var editor = CodeMirror.fromTextArea(myTextarea, {
-    mode: "text/x-csrc",  
-    matchBrackets: true,
-    lineNumbers: true,
-    fullScreen:false,
-    theme:"eclipse",
+    mode: "text/x-csrc",  //选择c模式
+    matchBrackets: true,//括号匹配
+    lineNumbers: true,//显示行号
+    fullScreen:false,//全屏显示
+    theme:"eclipse",//选择主题
     extraKeys:{
       "Ctrl-Space":"autocomplete",
       "Ctrl-Alt-Enter":function () {
@@ -172,10 +175,10 @@ typedef struct {
   </script>
 
 
-<!--   <textarea id="resultarea" rows="12" placeholder="Output:"></textarea>
-  <script type="text/javascript">
-    createTextAreaWithLines('resultarea');
-  </script> -->
+  <div><textarea id="resultarea" name ="resultarea" rows="7" placeholder="Output:">
+</textarea>
+  </div>
+
 
 </body>
 

@@ -1,5 +1,62 @@
 window.onload = function(){
-	//全屏功能的实现
+
+	var newFile = document.getElementById('new');
+	newFile.onclick = function () {
+		// body...
+		console.log("new file~~~");
+		editor.setValue("");
+		console.log("new file succeed~~~");
+	}
+
+	//本地文件的读取
+	var lopenf = document.getElementById('import');
+	lopenf.onclick = function(){
+		document.getElementById('files').click();
+	}
+	var fileRead = document.getElementById('files');
+	fileRead.onchange = function(){
+		console.log('reading file begins!!!')
+		var selectedFile = document.getElementById("files").files[0];
+		//获取读取的File对象
+		console.log(selectedFile);
+    	var name = selectedFile.name;//读取选中文件的文件名
+    	var size = selectedFile.size;//读取选中文件的大小
+    	console.log("文件名:"+name+"大小："+size);
+
+    	var reader = new FileReader();//这里是核心！！！读取操作就是由它完成的。
+    	reader.readAsText(selectedFile);//读取文件的内容
+
+    	reader.onload = function(){
+        	//console.log(this.result);//当读取完成之后会回调这个函数，
+        	//然后此时文件的内容存储到了result中。直接操作即可。
+        	editor.setValue(this.result);
+        };
+    }
+
+    var fileWrite = document.getElementById('export');
+    fileWrite.onclick = function(){
+    	console.log('writing file begins!!!');
+    	var content = editor.getValue();
+    	var	blob = new Blob([content],{type:"text/plain;charset=utf-8"});
+    	saveAs(blob,"filename");
+    	console.log('writing file succeed!!!');
+    }
+
+    var exit = document.getElementById('exit');//theme----seti
+    exit.onclick = function(){
+    	console.log("function exit begin~~~");
+    	if(confirm("您确定要关闭本页吗？")){
+    		window.onbeforeunload=null;
+    		window.location.href="about:blank";
+    		window.close();
+    	}
+    	else{
+    	}
+    	console.log("function exit succeed~~~");
+	    //alert("~成功更换主题5~");
+	}
+
+		//全屏功能的实现
 	var fullscr = document.getElementById('fullscr');
 	fullscr.onclick = function(){
 		console.log("fullScren~~~");
@@ -48,56 +105,8 @@ window.onload = function(){
 	    //alert("~成功更换主题5~");
 	}
 
-	//本地文件的读取
-	var lopenf = document.getElementById('import');
-	lopenf.onclick = function(){
-		document.getElementById('files').click();
-	}
-	var fileRead = document.getElementById('files');
-	fileRead.onchange = function(){
-		console.log('reading file begins!!!')
-		var selectedFile = document.getElementById("files").files[0];
-		//获取读取的File对象
-		console.log(selectedFile);
-    	var name = selectedFile.name;//读取选中文件的文件名
-    	var size = selectedFile.size;//读取选中文件的大小
-    	console.log("文件名:"+name+"大小："+size);
-
-    	var reader = new FileReader();//这里是核心！！！读取操作就是由它完成的。
-    	reader.readAsText(selectedFile);//读取文件的内容
-
-    	reader.onload = function(){
-        	//console.log(this.result);//当读取完成之后会回调这个函数，
-        	//然后此时文件的内容存储到了result中。直接操作即可。
-        	editor.setValue(this.result);
-        };
-    }
-
-    var fileWrite = document.getElementById('export');
-    fileWrite.onclick = function(){
-    	console.log('writing file begins!!!');
-    	var content = editor.getValue();
-    	var	blob = new Blob([content],{type:"text/plain;charset=utf-8"});
-    	saveAs(blob,"filename.c");
-    	console.log('writing file succeed!!!');
-    }
-
-    var exit = document.getElementById('exit');//theme----seti
-    exit.onclick = function(){
-    	console.log("function exit begin~~~");
-    	if(confirm("您确定要关闭本页吗？")){
-    		window.onbeforeunload=null;
-    		window.location.href="about:blank";
-    		window.close();
-
-    	}
-    	else{
-    	}
-    	console.log("function exit succeed~~~");
-	    //alert("~成功更换主题5~");
-	}
-
 }
+
 window.onbeforeunload = function(event) {
 	console.log("function fresh begin~~~");
 	event.returnValue = "Something to write...";
