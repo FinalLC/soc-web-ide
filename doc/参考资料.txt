@@ -30,3 +30,10 @@ http://blog.csdn.net/xujing19920814/article/details/54561797
 
 禁止文本域textarea可拖拽：
 http://www.uw3c.com/cssviews/css09.html
+
+######################
+######################
+######################
+
+python3 str to bytes &  bytes to str(淦！去TMD服务器！)
+http://blog.csdn.net/bible_reader/article/details/53047550
